@@ -1,9 +1,7 @@
 # dotfiles
 
 <div align="center">
-   <a href="#--------">
       <img src="assets/current-look.png" alt="Desktop Screenshot">
-   </a>
 </div>
 
 ### Setup & Applications:
