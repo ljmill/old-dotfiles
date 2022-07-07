@@ -1,0 +1,75 @@
+#############################
+             Focus
+#############################
+
+-> Focus other monitor
+Super + Tab
+
+-> Focus next/previous desktop on current monitor
+Super + [,]
+
+-> Cycle focus
+Alt + Tab
+
+#############################
+             Swap
+#############################
+
+-> swap window in given direction
+Super + Shift + H,J,K,L
+
+-> Swap current window with biggest window
+Super + B
+
+#############################
+         Resize/Move
+#############################
+
+-> Expand
+Super + Alt + H,J,K,L
+
+-> Contract
+Super + Alt + Shift + H,J,K,L
+
+-> Move floating window
+Super + Left,Down,Up,Right
+
+#############################
+        Applications
+#############################
+
+-> Chrome
+Super + C
+
+-> Firefox
+Super + F
+
+-> File manager
+Super + E
+
+-> VSCode
+Super + V
+
+#############################
+        Config Files
+#############################
+
+-> bspwm
+Super + Alt + B
+
+-> sxhkd 
+Super + Alt + S
+
+-> Polybar
+Super + Alt + P
+
+#############################
+           Reload
+#############################
+
+-> Reload sxhkd
+Super + Escape
+
+-> Reload bspwm/Polybar
+Super + Alt + R
+

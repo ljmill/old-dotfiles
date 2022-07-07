@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Config files
+cp -Rsf ~/dotfiles/alacritty /home/ljmill/.config
+cp -Rsf ~/dotfiles/bspwm /home/ljmill/.config
+cp -Rsf ~/dotfiles/dunst /home/ljmill/.config
+cp -Rsf ~/dotfiles/eww /home/ljmill/.config
+cp -Rsf ~/dotfiles/picom /home/ljmill/.config
+cp -Rsf ~/dotfiles/rofi /home/ljmill/.config
+cp -Rsf ~/dotfiles/sxhkd /home/ljmill/.config
+
+# Bin scripts
+cp -Rsf ~/dotfiles/bin /home/ljmill/.local
+
+# .zshrc
+cp -sf ~/dotfiles/.zshrc /home/ljmill
+
+

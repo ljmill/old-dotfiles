@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ $2 -eq 1 ]]; then
+    wal -i $1 --backend wal
+elif [[ $2 -eq 2 ]]; then
+    wal -i $1 --backend schemer2
+elif [[ $2 -eq 3 ]]; then
+    wal -i $1 --backend colorz
+elif [[ $2 -eq 4 ]]; then
+    wal -i $1 --backend colorthief
+elif [[ $2 -eq 5 ]]; then
+    wal -i $1 --backend haishoku
+else 
+    wal -i $1
+fi
+
+bspcolors
+~/.config/polybar/launch.sh &
+eww reload
+eww reload

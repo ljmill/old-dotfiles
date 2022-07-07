@@ -1,0 +1,35 @@
+#!/bin/sh
+
+## Airplane Mode, Keyboard Brightness, DND Status 
+AIRPLANESTATUS="$(rfkill list | sed -n 2p | awk '{print $3}')"
+KEYBRIGHTLEVEL=`cat /sys/class/leds/asus::kbd_backlight/brightness`
+DNDSTATUS=$(dunstctl is-paused)
+
+# initialize/update airplane status/icon
+if [[ $AIRPLANESTATUS == "no" ]]; then
+    eww -c ~/.config/eww/bar update airplane-status="Off"
+    eww -c ~/.config/eww/bar update airplane-icon="󰀞"
+else
+    eww -c ~/.config/eww/bar update airplane-status="On"
+    eww -c ~/.config/eww/bar update airplane-icon="󰀝"
+fi
+
+# initialize keyboard brightness
+if [[ $KEYBRIGHTLEVEL -eq 0 ]]; then
+    eww -c ~/.config/eww/bar update keybright-image="images/kbb0.png"
+elif [[ $KEYBRIGHTLEVEL -eq 1 ]]; then
+    eww -c ~/.config/eww/bar update keybright-image="images/kbb1.png"
+elif [[ $KEYBRIGHTLEVEL -eq 2 ]]; then
+    eww -c ~/.config/eww/bar update keybright-image="images/kbb2.png"
+fi
+
+# initialize dnd
+if [ $DNDSTATUS == "false" ]; then
+    eww -c ~/.config/eww/bar update dnd-color="rgba(255,255,255,0.15)"
+    eww -c ~/.config/eww/bar update dnd-status="Off"
+else
+    eww -c ~/.config/eww/bar update dnd-color="#734bd8"
+    eww -c ~/.config/eww/bar update dnd-status="On"
+fi
+
+echo ""
