@@ -1,0 +1,10 @@
+#!/bin/sh
+
+LOGFILE=/tmp/hypr/monitor.log
+A_MON=$(cat $LOGFILE)
+
+if [[ "$A_MON" == "eDP-1" ]]; then
+    hyprctl dispatch focusmonitor DP-3
+else
+    hyprctl dispatch focusmonitor eDP-1
+fi

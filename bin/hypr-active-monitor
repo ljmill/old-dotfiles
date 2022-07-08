@@ -1,0 +1,20 @@
+#!/bin/sh
+
+A_MON="eDP-1"
+A_WKSP="1"
+LOGFILE=/tmp/hypr/monitor.log
+
+function handle {
+  output=$(echo "$line" | sed -e 's/\([>]\)\1\+/ /g' -e 's/,/ /g')
+  action=$(echo $output | awk '{ print $1 }')
+
+  if [[ "$action" == "activemon" ]]; then
+    A_MON=$(echo $output | awk '{ print $2 }')
+  else
+    return
+  fi
+
+  echo $A_MON > $LOGFILE
+}
+
+socat - UNIX-CONNECT:/tmp/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/.socket2.sock | while read line; do handle $line; done
