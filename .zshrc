@@ -38,12 +38,13 @@ findkeyname() {
 alias chrome=google-chrome-stable
 alias l='exa -la --icons --sort type'
 alias e='eww -c $HOME/.config/eww/bar open-many --toggle bar bottom-bar hoverarea'
+alias eh='ewwl -c $HOME/dotfiles/eww/hyprbar open-many --toggle bar bottom-bar'
 alias keyname=findkeyname
 alias geo='xdotool selectwindow getwindowgeometry'
 alias pywal=colorswitcher
 alias dots='cd ~/dotfiles'
 
-export PATH=~/.local/bin:~/Go/bin:$PATH
+export PATH=~/dotfiles/bin:~/.local/bin:~/Go/bin:$PATH
 
 ## xdg-ninja
 export XDG_DATA_HOME=$HOME/.local/share
