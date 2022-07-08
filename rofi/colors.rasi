@@ -1,10 +1,10 @@
 * {
-separatorcolor:		#242424;
+separatorcolor: #242424;
 
-active-background:	#9ed84b;
-normal-background:	#242424;
-urgent-background:	#d84b4f;
-urgent-foreground:	#c6c6c6;
+active-background: #9ed84b;
+normal-background: #242424;
+urgent-background: #d84b4f;
+urgent-foreground: #c6c6c6;
 
 alternate-active-background: #242424;
 alternate-normal-background: #242424;
@@ -22,6 +22,6 @@ selecred-active-foreground: #242424;
 selected-normal-foreground: #242424;
 selected-urgent-foreground: #242424;
 
-background: 		#242424;
-foreground:			#c6c6c6;
+background: #242424;
+foreground: #c6c6c6;
 }
