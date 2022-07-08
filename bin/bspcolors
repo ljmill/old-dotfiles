@@ -5,7 +5,7 @@
 
 ## A script to get colours from xrdb & deploy it to polybar, alacritty & rofi.
 
-DIR="$HOME/.config"
+DIR="$HOME/dotfiles"
 
 getcolors () {
 	FOREGROUND="$(xrdb -query | grep 'foreground:' | head -n 1 | awk '{print $NF}')"
@@ -140,7 +140,7 @@ bspdunst () {
 
 main () {
 	getcolors
-	bspbar
+	#bspbar
 	bspterm
 	bsprofi
 	bspdunst
