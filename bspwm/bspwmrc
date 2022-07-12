@@ -20,7 +20,7 @@ sh ~/.screenlayout/monitor.sh &
 # Eww
 $HOME/.local/bin/eww -c $HOME/.config/eww/bar --restart open-many bottom-bar bar &
 # Notifications
-# /usr/bin/dunst &
+/usr/bin/dunst &
 # Polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 # Wallpaper

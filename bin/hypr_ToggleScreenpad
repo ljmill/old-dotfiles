@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BRIGHTNESS=$(cat /sys/class/leds/asus::screenpad/brightness)
+if [[ "$BRIGHTNESS" == "0" ]]; then
+    echo 255 > '/sys/class/leds/asus::screenpad/brightness'
+else
+    echo 0 > '/sys/class/leds/asus::screenpad/brightness'
+fi    
+
+killall ewwl
+~/dotfiles/bin/ewwl -c ~/dotfiles/eww/hyprbar open-many bar bottom-bar   

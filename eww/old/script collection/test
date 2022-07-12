@@ -1,0 +1,5 @@
+#!/bin/sh
+
+boop="$(head -5 ~/.cache/notifications.txt)"
+
+ewwl -c ~/dotfiles/eww/test update notifications="$boop"

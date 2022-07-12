@@ -35,14 +35,21 @@ findkeyname() {
   xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
 
+klog() {
+  kill -9 $(ps aux | grep "zsh scripts/logger.zsh subscribe" | awk '{ print $2 }' | head -n -1)
+  kill -9 $(ps aux | grep "zsh scripts/notif.zsh subscribe" | awk '{ print $2 }' | head -n -1)
+}
+
 alias chrome=google-chrome-stable
 alias l='exa -la --icons --sort type'
 alias e='eww -c $HOME/.config/eww/bar open-many --toggle bar bottom-bar hoverarea'
-alias eh='ewwl -c $HOME/dotfiles/eww/hyprbar open-many --toggle bar bottom-bar'
+alias et='ewwl -c $HOME/dotfiles/eww/test open-many --toggle bar'
+alias es='ewwl -c $HOME/dotfiles/eww/test state'
 alias keyname=findkeyname
 alias geo='xdotool selectwindow getwindowgeometry'
 alias pywal=colorswitcher
 alias dots='cd ~/dotfiles'
+alias klog=klog
 
 export PATH=~/dotfiles/bin:~/.local/bin:~/Go/bin:$PATH
 

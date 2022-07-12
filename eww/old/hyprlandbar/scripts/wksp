@@ -1,0 +1,66 @@
+#!/bin/sh
+
+active=true
+
+workspaces() {
+    output=$(echo "$1" | sed -e 's/\([>]\)\1\+/ /g' -e 's/,/ /g')
+    action=$(echo "$output" | awk '{ print $1 }')
+
+    if [[ "$action" == "activemon" ]]; then
+        A_MON=$(echo $output | awk '{ print $2 }')
+        A_WKSP=$(echo $output | awk '{ print $3 }')
+    elif [[ "$action" == "workspace" ]]; then
+        A_WKSP=$(echo $output | awk '{ print $2 }')
+    else
+        return
+    fi
+
+    if [[ "$active" == false && "$A_MON" == "eDP-1" ]]; then
+        active=true
+    elif [[ "$active" == false && "$A_MON" == "DP-3" ]]; then
+        return
+    elif [[ "$active" == true && "$A_MON" == "DP-3" ]]; then
+        active=false
+    fi
+
+    stringliteral="(box	:class \"works\" :orientation \"v\"	:halign \"center\"	:valign \"start\" :space-evenly \"false\" :spacing \"-5\" "
+
+    focusedcolor="\"focused-work\" "
+    unfocusedcolor="\"unfocused-work\" "
+
+    occupiedicon="\"󰿦\""
+    unoccupiedicon="\"󰔌\""
+
+    workspaces=1,2,3,4,5
+
+    # Looping over each workspace to construct a widget (string literal) to
+    # pass back to Eww
+    for val in ${workspaces//,/ }
+    do
+    stringliteral+="(button :class "
+        if [[ "$val" == "$A_WKSP" ]]; then 
+            stringliteral+=${focusedcolor}
+        else
+            stringliteral+=${unfocusedcolor}
+        fi
+
+        stringliteral+=":onclick \"hyprctl dispatch workspace $val\" "
+
+        occupied=$(hyprctl workspaces | grep "workspace ID $val" | awk '{ print $3 }')
+
+        if [[ $occupied ]]; then 
+            stringliteral+=${occupiedicon}
+        else
+            stringliteral+=${unoccupiedicon}
+        fi
+        stringliteral+=") "
+    done
+    
+    echo "$stringliteral)"
+}
+
+#tail -f /tmp/hypr/eventlog.log | while read -r; do 
+workspaces
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do 
+workspaces "$event"
+done

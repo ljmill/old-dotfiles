@@ -27,7 +27,7 @@ window:
   multiplier: 3
 
 ## Background opacity
-  opacity: 0.6
+  opacity: 0.4
 
 ## Cursor
 cursor:

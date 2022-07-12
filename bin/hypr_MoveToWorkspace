@@ -1,0 +1,30 @@
+#!/bin/sh
+
+LOGFILE=/tmp/hypr/monitor.log
+A_MON=$(cat $LOGFILE)
+
+if [[ "$A_MON" == "eDP-1" ]]; then
+    if [[ "$1" == "1" ]]; then
+        hyprctl dispatch movetoworkspacesilent 1
+    elif [[ "$1" == "2" ]]; then
+        hyprctl dispatch movetoworkspacesilent 2
+    elif [[ "$1" == "3" ]]; then
+        hyprctl dispatch movetoworkspacesilent 3
+    elif [[ "$1" == "4" ]]; then
+        hyprctl dispatch movetoworkspacesilent 4
+    elif [[ "$1" == "5" ]]; then
+        hyprctl dispatch movetoworkspacesilent 5
+    fi
+else
+    if [[ "$1" == "1" ]]; then
+        hyprctl dispatch movetoworkspacesilent 6
+    elif [[ "$1" == "2" ]]; then
+        hyprctl dispatch movetoworkspacesilent 7
+    elif [[ "$1" == "3" ]]; then
+        hyprctl dispatch movetoworkspacesilent 8
+    elif [[ "$1" == "4" ]]; then
+        hyprctl dispatch movetoworkspacesilent 9
+    elif [[ "$1" == "5" ]]; then
+        hyprctl dispatch movetoworkspacesilent 10
+    fi
+fi

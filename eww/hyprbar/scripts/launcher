@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+[ "$1" = "--chrome" ] && google-chrome-stable && exit
+[ "$1" = "--code" ] && nautilus ~/repos && exit
+[ "$1" = "--documents" ] && nautilus ~/Documents && exit
+[ "$1" = "--downloads" ] && nautilus ~/Downloads && exit
+[ "$1" = "--music" ] && nautilus ~/Music && exit
+[ "$1" = "--pictures" ] && nautilus ~/Pictures && exit
+[ "$1" = "--bin" ] && nautilus ~/dotfiles/bin && exit
+[ "$1" = "--dotfiles" ] && nautilus ~/dotfiles && exit
+[ "$1" = "--alacritty" ] && alacritty && exit
+[ "$1" = "--calculator" ] && exit
+[ "$1" = "--cpicker" ] && exit
+[ "$1" = "--chrome" ] && google-chrome-stable && exit
+[ "$1" = "--firefox" ] && firefox && exit
+[ "$1" = "--gimp" ] && gimp && exit
+[ "$1" = "--obs" ] && obs && exit
+[ "$1" = "--steam" ] && steam && exit
+[ "$1" = "--flameshot" ] && flameshot gui && exit
+exit

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+LOGFILE=/tmp/hypr/monitor.log
+A_MON=$(cat $LOGFILE)
+
+if [[ "$A_MON" == "eDP-1" ]]; then
+    hyprctl dispatch movewindow mon:DP-3
+else
+    hyprctl dispatch movewindow mon:eDP-1
+fi

@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+
+LOGFILE=~/.cache/notifications.txt
+APPLICATION=$1
+SUMMARY=$2
+BODY=$3
+ICONPATH=$4
+URGENCY=$5
+
+BODYLENGTH=30
+ALBUMART=""
+
+REG_TEMPLATE="(box :class \"notification\" :orientation \"v\" :space-evenly false :spacing 10 (box :class \"notification-title\" :orientation \"h\" :valign \"start\" (label :class \"notification-app-label\" :halign \"start\" :text \"$APPLICATION\") (button :class \"notification-button\" :halign \"end\" \"X\")) (box :class \"notification-body\" :orientation \"h\" :spacing 20 :space-evenly false :halign \"start\" :height 90 (image :class \"notification-icon-image\" :path \"images/icons/notif.svg\" :image-width 75) (box :class \"notification-sum-bod\" :orientation \"v\" :space-evenly false :valign \"center\" :spacing 10 (label :class \"notification-summary\" :halign \"start\" :text \"$SUMMARY\") (label :class \"notification-body\" :halign \"start\" :limit-width $BODYLENGTH :text \"$BODY\"))))"
+
+listen () {
+  make_literal
+  while inotifywait -qq -e modify $LOGFILE; do
+      # echo "$(cat $LOGFILE)"
+      make_literal
+  done
+  # local lines=$(cat $LOGFILE | wc -l)
+  # while sleep 0.1; do
+  #   local new=$(cat $LOGFILE | wc -l)
+  #   [[ $lines -ne $new ]] && lines=$new && print
+  # done | while read -r _ do; make_literal done
+
+
+}
+
+make_literal () {
+  stringlit="$(tr '\n' ' ' < $LOGFILE)"
+  printf "%s" "$stringlit"
+  #echo "$stringlit"
+
+  # stringlit="$(<$LOGFILE)"
+  #  printf "%s" "$stringlit"
+
+  #printf "%s" "$(< $LOGFILE)"
+
+}
+ 
+makerecord () {
+  if [[ "$APPLICATION" == "Spotify" ]]; then
+    artlink="$(playerctl -p spotify,$any,mpd,firefox,chromium,brave metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
+    album="$(playerctl metadata --format "{{ album }}" | sed 's/[^a-zA-Z0-9]//g')"
+	  curl -s "$artlink" --output /tmp/$album.png
+    ALBUMART="\\\"/tmp/$album.png\\\""
+
+    SPOTIFY_TEMPLATE="(box :class \"notification\" :orientation \"v\" :space-evenly false :spacing 10 (box :class \"notification-title\" :orientation \"h\" :valign \"start\" (label :class \"notification-app-label\" :halign \"start\" :text \"$APPLICATION\") (button :class \"notification-button\" :halign \"end\" \"X\")) (box :class \"notification-body\" :orientation \"h\" :spacing 20 :space-evenly false :halign \"start\" :height 90 (box :class \"notification-icon-box\" :valign \"end\" :style \"background-image: url($ALBUMART);\") (box :class \"notification-sum-bod\" :orientation \"v\" :space-evenly false :valign \"center\" :spacing 10 (label :class \"notification-summary\" :halign \"start\" :text \"$SUMMARY\") (label :class \"notification-body\" :halign \"start\" :limit-width $BODYLENGTH :text \"$BODY\"))))"
+    echo "$SPOTIFY_TEMPLATE" >> $LOGFILE
+  else
+    echo "$REG_TEMPLATE" >> $LOGFILE
+  fi
+}
+ 
+if [[ "$1" == "pop" ]]; then
+  sed -i '1d' $LOGFILE && exit
+elif [[ "$1" == "clear" ]]; then
+  sed -i 'd' $LOGFILE && exit
+elif [[ "$1" == "listen" ]]; then
+  listen
+elif [[ "$1" == "--get" ]]; then
+  make_literal
+else
+  makerecord
+fi
