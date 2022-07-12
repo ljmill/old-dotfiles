@@ -1,6 +1,6 @@
 #!/bin/sh
 
-eww="ewwl -c /home/ljmill/dotfiles/eww/test"
+eww="ewwl -c /home/ljmill/dotfiles/eww/hyprbar"
 
 ${eww} update b_vitals=false
 ${eww} update b_apps=false
