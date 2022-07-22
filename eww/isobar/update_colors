@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # EDIT THESE 
-CONFIGPATH="$HOME/dotfiles/eww/iso"
+CONFIGPATH="$HOME/dotfiles/eww/isobar"
 
 get_colors() {
     colors="$(cat ~/.config/nitrogen/bg-saved.cfg | \

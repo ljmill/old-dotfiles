@@ -1,4 +1,4 @@
-(defvar eww "$HOME/dotfiles/bin/eww -c $HOME/dotfiles/eww/iso")
+(defvar eww "$HOME/dotfiles/bin/eww -c $HOME/dotfiles/eww/isobar")
 
 (deflisten workspaces "scripts/workspace-primary")
 
@@ -81,7 +81,7 @@
 				(revealer :reveal b_tray :duration "1000ms"
 					(eventbox :onhoverlost "${eww} update b_tray=false" 
 						(overlay
-							(image :image-width 78 :image-height 298 :path "images/bottom-wedge.svg")
+							(image :image-width 78 :path "images/bottom-wedge.svg")
 							(box :class "slider-box" :valign "start" :orientation "v" :space-evenly false
 								(overlay
 									(image :image-width 64 :path "images/accent/bwa1.svg")

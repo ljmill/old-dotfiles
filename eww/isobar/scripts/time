@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EWW="eww -c /home/ljmill/dotfiles/eww/iso update"
+EWW="eww -c /home/ljmill/dotfiles/eww/isobar update"
 
 while true; do
     minute="$(date +%M)"

@@ -108,7 +108,7 @@ get_weather_data() {
 
 get_weather_data
 
-eww -c ~/dotfiles/eww/iso update weather-icon="${weather_icon}"
+eww -c ~/dotfiles/eww/isobar update weather-icon="${weather_icon}"
 echo "${weather_temp}"
 
 exit
