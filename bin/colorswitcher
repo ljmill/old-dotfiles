@@ -17,4 +17,3 @@ fi
 bspcolors
 ~/.config/polybar/launch.sh &
 eww reload
-eww reload

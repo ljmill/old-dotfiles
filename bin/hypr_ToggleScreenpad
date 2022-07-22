@@ -6,6 +6,3 @@ if [[ "$BRIGHTNESS" == "0" ]]; then
 else
     echo 0 > '/sys/class/leds/asus::screenpad/brightness'
 fi    
-
-killall ewwl
-~/dotfiles/bin/ewwl -c ~/dotfiles/eww/hyprbar open-many bar bottom-bar   

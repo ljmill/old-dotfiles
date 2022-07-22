@@ -18,7 +18,7 @@ sh ~/.screenlayout/monitor.sh &
 # Polybar
 #~/.config/polybar/launch.sh &
 # Eww
-$HOME/.local/bin/eww -c $HOME/.config/eww/bar --restart open-many bottom-bar bar &
+# $HOME/.local/bin/eww -c $HOME/dotfiles/eww/old/bar --restart open-many bottom-bar bar &
 # Notifications
 /usr/bin/dunst &
 # Polkit
@@ -38,33 +38,33 @@ xfce4-power-manager &
 # sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 # Fix touchscreens
-xinput map-to-output 'ELAN9008:00 04F3:2C1A' eDP-1 &
-xinput map-to-output 'ELAN9009:00 04F3:2C1B' DP-3 &
+xinput map-to-output 'ELAN9008:00 04F3:2C1A' eDP1 &
+xinput map-to-output 'ELAN9009:00 04F3:2C1B' DP3 &
 
 ## Get colors from .Xresources -------------------------------#
-xrdb ~/.Xresources
-getcolors() {
-	FOREGROUND=$(xrdb -query | grep 'foreground:'| head -n 1 | awk '{print $NF}')
-	BACKGROUND=$(xrdb -query | grep 'background:'| head -n 1 | awk '{print $NF}')
-	BLACK=$(xrdb -query | grep 'color0:'| head -n 1 | awk '{print $NF}')
-	RED=$(xrdb -query | grep 'color1:'| head -n 1 | awk '{print $NF}')
-	GREEN=$(xrdb -query | grep 'color2:'| head -n 1 | awk '{print $NF}')
-	YELLOW=$(xrdb -query | grep 'color3:'| head -n 1 | awk '{print $NF}')
-	BLUE=$(xrdb -query | grep 'color4:'| head -n 1 | awk '{print $NF}')
-	MAGENTA=$(xrdb -query | grep 'color5:'| head -n 1 | awk '{print $NF}')
-	CYAN=$(xrdb -query | grep 'color6:'| head -n 1 | awk '{print $NF}')
-	WHITE=$(xrdb -query | grep 'color7:'| head -n 1 | awk '{print $NF}')
-}
-bspcolors
-bspdunst
-getcolors
+# xrdb ~/.Xresources
+# getcolors() {
+# 	FOREGROUND=$(xrdb -query | grep 'foreground:'| head -n 1 | awk '{print $NF}')
+# 	BACKGROUND=$(xrdb -query | grep 'background:'| head -n 1 | awk '{print $NF}')
+# 	BLACK=$(xrdb -query | grep 'color0:'| head -n 1 | awk '{print $NF}')
+# 	RED=$(xrdb -query | grep 'color1:'| head -n 1 | awk '{print $NF}')
+# 	GREEN=$(xrdb -query | grep 'color2:'| head -n 1 | awk '{print $NF}')
+# 	YELLOW=$(xrdb -query | grep 'color3:'| head -n 1 | awk '{print $NF}')
+# 	BLUE=$(xrdb -query | grep 'color4:'| head -n 1 | awk '{print $NF}')
+# 	MAGENTA=$(xrdb -query | grep 'color5:'| head -n 1 | awk '{print $NF}')
+# 	CYAN=$(xrdb -query | grep 'color6:'| head -n 1 | awk '{print $NF}')
+# 	WHITE=$(xrdb -query | grep 'color7:'| head -n 1 | awk '{print $NF}')
+# }
+# bspcolors
+# bspdunst
+# getcolors
 
 
-bspc monitor eDP-1 -d 1 3 5 7 9
-bspc monitor DP-3 -d 2 4 6 8 0 
+bspc monitor eDP1 -d 1 3 5 7 9
+bspc monitor DP3 -d 2 4 6 8 0 
 
 bspc config border_width         3
-bspc config window_gap          8
+bspc config window_gap          15
 
 bspc config split_ratio          0.52
 bspc config gapless_monocle      true

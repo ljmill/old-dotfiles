@@ -3,9 +3,7 @@
 # Config files
 cp -Rsf ~/dotfiles/alacritty /home/ljmill/.config
 cp -Rsf ~/dotfiles/bspwm /home/ljmill/.config
-cp -Rsf ~/dotfiles/dunst /home/ljmill/.config
 cp -Rsf ~/dotfiles/eww /home/ljmill/.config
-cp -Rsf ~/dotfiles/hypr /home/ljmill/.config
 cp -Rsf ~/dotfiles/picom /home/ljmill/.config
 cp -Rsf ~/dotfiles/rofi /home/ljmill/.config
 cp -Rsf ~/dotfiles/sxhkd /home/ljmill/.config

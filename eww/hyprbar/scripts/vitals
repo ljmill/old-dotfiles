@@ -1,6 +1,0 @@
-#!/bin/sh
-
-
-if [[ "$1" == "--fan" ]]; then
-    echo $(sensors | grep cpu_fan | awk '{ print $2 }')
-fi

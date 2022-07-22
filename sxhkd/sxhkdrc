@@ -34,9 +34,6 @@ super + Tab
 
 super + slash
     xfce4-terminal -e "less /home/$USER/.config/bspwm/customkeybindings"
-  
-Shift_R
-    ~/.local/bin/toggle.sh
 
 # ============================================================
 #                                                SUPER + ALPHA

@@ -1,0 +1,38 @@
+#!/bin/sh
+
+workspaces() {
+    workspaces=( 1 3 5 7 9 )
+    stringliteral="(overlay (overlay "
+    i=1
+
+    
+    for val in "${workspaces[@]}"
+    do
+        if [[ $(bspc query -D -d focused --names | grep "$val") ]]; then 
+            stringliteral+="(image :class \"a-thing\" :image-width 64 :path \"images/triangle-f/p$i.svg\") "
+        elif [[ $(bspc query -D -d .occupied --names | grep "$val") ]]; then 
+            stringliteral+="(image :image-width 64 :path \"images/triangle-o/p$i.svg\") "
+        else
+            stringliteral+="(image :image-width 64 :path \"images/triangle-e/p$i.svg\") "
+        fi
+
+        i=$((i+1))
+        
+    done
+
+    stringliteral+=") (box :orientation \"v\" :space-evenly true :style \"padding-top: 17px; padding-bottom: 17px;\" "
+	stringliteral+="(button :onclick \"bspc desktop -f ${workspaces[0]}\" \"\") "
+	stringliteral+="(button :onclick \"bspc desktop -f ${workspaces[1]}\" \"\") "
+    stringliteral+="(button :onclick \"bspc desktop -f ${workspaces[2]}\" \"\") "
+    stringliteral+="(button :onclick \"bspc desktop -f ${workspaces[3]}\" \"\") "
+    stringliteral+="(button :onclick \"bspc desktop -f ${workspaces[4]}\" \"\")))"
+	
+    echo $stringliteral
+}
+
+workspaces
+bspc subscribe desktop node_transfer | while read -r _ ; do
+workspaces
+done
+
+
