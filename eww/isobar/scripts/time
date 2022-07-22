@@ -1,4 +1,4 @@
-#!/bin/bash
+\#!/bin/bash
 
 EWW="eww -c /home/ljmill/dotfiles/eww/isobar update"
 
@@ -14,7 +14,11 @@ while true; do
     ${EWW} day1=${day::1}
     ${EWW} day2=${day:0-1}
 
-     ${EWW} hour1=${hour::1}
+     if [[ $hour -lt 11 ]]; then
+        ${EWW} hour1=0
+    else
+        ${EWW} hour1=1
+    fi
     ${EWW} hour2=${hour:0-1}
 
     echo ${minute::1}
