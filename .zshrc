@@ -18,7 +18,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-ZSH=/usr/share/oh-my-zsh/
+ZSH=~/.oh-my-zsh/
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
@@ -35,16 +35,9 @@ findkeyname() {
   xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
 
-klog() {
-  kill -9 $(ps aux | grep "zsh scripts/logger.zsh subscribe" | awk '{ print $2 }' | head -n -1)
-  kill -9 $(ps aux | grep "zsh scripts/notif.zsh subscribe" | awk '{ print $2 }' | head -n -1)
-}
-
 alias chrome=google-chrome-stable
 alias l='exa -la --icons --sort type'
-alias e='eww -c $HOME/.config/eww/bar open-many --toggle bar bottom-bar hoverarea'
-alias et='ewwl -c $HOME/dotfiles/eww/test open-many --toggle bar'
-alias es='ewwl -c $HOME/dotfiles/eww/test state'
+alias eo='eww -c $HOME/dotfiles/eww/isobar open --toggle bar'
 alias keyname=findkeyname
 alias geo='xdotool selectwindow getwindowgeometry'
 alias pywal=colorswitcher
@@ -59,7 +52,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
-source /usr/share/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
