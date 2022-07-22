@@ -55,7 +55,7 @@
 										(button :onclick "scripts/popup wifi" "")
 										(button :onclick "scripts/popup bluetooth" "")
 										(button :onclick "scripts/dnd" "")
-										; buttons over weather triangles.. does nothing.. here for spacing --> box = space evenlyl
+										; buttons over weather triangles.. does nothing.. here for spacing --> box = space evenly
 										(button :onclick "" "")
 										(button :onclick "" "")))
 							(image :style "margin-top: -84px;" :image-width 64 :path "images/accent/bwa3.svg")))))							
