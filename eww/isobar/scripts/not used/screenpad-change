@@ -1,0 +1,6 @@
+#!/bin/sh
+
+floor_val=
+float_val=$1
+floor_val=${float_val/.*}
+echo $floor_val > '/sys/class/leds/asus::screenpad/brightness'
