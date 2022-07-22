@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+BRIGHTNESS=`cat /sys/class/backlight/intel_backlight/brightness`
+
+icon() {
+    bri=$(echo $((BRIGHTNESS*100/19200)))
+    
+    if [[ "$bri" -gt "90" ]]; then
+        echo "󰃠"
+        elif [[ "$bri" -gt "50" ]]; then
+        echo "󰃝"
+        elif [[ "$bri" -gt "30" ]]; then
+        echo "󰃟"
+    else
+        echo "󰃞"
+    fi
+}
+
+getbri() {
+    bri=$(echo $((BRIGHTNESS*100/19200)))
+    echo $bri
+}
+
+if [[ $1 == "--icon" ]]; then
+    icon
+    elif [[ $1 == "--value" ]]; then
+    getbri
+fi

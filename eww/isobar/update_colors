@@ -1,0 +1,120 @@
+#!/bin/bash
+
+# EDIT THESE 
+CONFIGPATH="$HOME/dotfiles/eww/iso"
+
+get_colors() {
+    colors="$(cat ~/.config/nitrogen/bg-saved.cfg | \
+                grep -m 1 file= | \
+                sed 's/\// /g' | \
+                awk 'NF>1{print $NF}' | \
+                sed -e 's/-/ /g;s/.png//g')"
+
+    secondarycolor="$(echo $colors | awk '{ print $2 }')"
+    primarycolor="$(echo $colors | awk '{ print $1 }')"
+    accentcolor="$(echo $colors | awk '{ print $3 }')"
+    themecolor="$(echo $colors | awk '{ print $4 }')"
+}
+
+translate_color() {
+    case "$(eval echo \$$1)" in 
+    black) 
+        eval "$1='#242424'" ;;
+    red) 
+        eval "$1='#D84B4F'" ;;
+    cyan)
+        eval "$1='#4bd8a2'" ;;
+    green) 
+        eval "$1='#9ed84b'" ;;
+    yellow) 
+        eval "$1='#d8af4b'" ;;
+    blue) 
+        eval "$1='#4b91d8'" ;;
+    purple) 
+        eval "$1='#8b68e3'" ;;
+    cyan) 
+        eval "$1='#4bd8a2'" ;;
+    white) 
+        eval "$1='#c6c6c6'" ;;
+    dark)
+        eval "$1='#141414'" ;;
+    light)
+        eval "$1='#ececec'" ;;
+    *)
+        exit ;;
+    esac
+}
+
+swap_colors() {
+    echo $themecolor
+    echo $accentcolor
+    echo $secondarycolor
+    echo $primarycolor
+    # color of the bar (background) -- matches theme color
+    sed -i "s/#[0-9a-fA-F]\{6\}/$themecolor/" $CONFIGPATH/images/bg.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$themecolor/" $CONFIGPATH/images/bottom-wedge.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$themecolor/" $CONFIGPATH/images/top-wedge.svg
+
+    # color of workspaces/triangles which are empty
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/triangle-e/*
+
+    # color of workspace/triangle which is focused
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/triangle-f/*
+
+    # color of workspaces/triangles which are occupied (have windows)
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/triangle-o/*
+
+    # color of hours
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/bottom/hour/*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/top/hour/*
+
+    # color of  minutes
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/bottom/minute/*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/top/minute/*
+
+    # color of month
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/bottom/month/*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/top/month/*
+
+    # color of day
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/bottom/day/*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/top/day/*
+
+    # color of tray accents
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/accent/bwa1.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/accent/bwa2.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/accent/bwa3.svg
+
+    # color of tray triangles
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/triangle-m/p1.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/triangle-m/p2.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/triangle-m/p3.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/triangle-m/p4.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/triangle-m/p5.svg
+
+    # color of tray icons
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/icons/wifi*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/icons/bluetooth*
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/icons/dnd*
+
+    # color of top accents
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/accent/ta1.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/accent/ta2.svg
+
+    # color of bottom accents
+    sed -i "s/#[0-9a-fA-F]\{6\}/$accentcolor/" $CONFIGPATH/images/accent/a1.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$secondarycolor/" $CONFIGPATH/images/accent/a2.svg
+    sed -i "s/#[0-9a-fA-F]\{6\}/$primarycolor/" $CONFIGPATH/images/accent/a3.svg
+
+    echo "\$primary: $primarycolor;" > $CONFIGPATH/colors.scss
+    echo "\$secondary: $secondarycolor;" >> $CONFIGPATH/colors.scss
+    echo "\$wang: $accentcolor;" >> $CONFIGPATH/colors.scss
+
+}
+
+get_colors
+translate_color themecolor
+translate_color accentcolor
+translate_color secondarycolor
+translate_color primarycolor
+swap_colors
