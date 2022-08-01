@@ -68,9 +68,14 @@ super + f
 super + m
 	bspc desktop -l next
 
-# set the window to floating
+# alternate between floating and tiled
 super + o
-	bspc node -t floating
+	bspc node -t {floating,tiled}
+
+# alternate between fullscreen and filed
+super + p
+    bspc node -t {fullscreen,tiled}
+
 
 # close window
 super + q

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-## Autostart -------------------------------------------------#
+# Autostart --------------------------------------------------
 killall "blueberry-obex-agent"
 killall "blueberry-tray"
 killall "picom"
@@ -11,15 +11,10 @@ killall "nitrogen"
 killall "xapp"
 killall "ati-spi"
 killall "xfce4-power-manager"
-killall "eww"
 
 # Set display from arandr saved script
 sh ~/.screenlayout/monitor.sh &
-# Polybar
-#~/.config/polybar/launch.sh &
-# Eww
-# $HOME/.local/bin/eww -c $HOME/dotfiles/eww/old/bar --restart open-many bottom-bar bar &
-# Notifications
+# Dunst
 /usr/bin/dunst &
 # Polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -29,42 +24,32 @@ nitrogen --restore &
 # Dex
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  
 # Picom
-#pgrep -x picom > /dev/null || picom --experimental-backends &
-pgrep -x picom > /dev/null || picom &
+pgrep -x picom > /dev/null || picom --experimental-backends &
 # Network Applet
 nm-applet --indicator &
 # Power Manager
 xfce4-power-manager &
 # sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
+
 # Fix touchscreens
-xinput map-to-output 'ELAN9008:00 04F3:2C1A' eDP1 &
-xinput map-to-output 'ELAN9009:00 04F3:2C1B' DP3 &
+xinput map-to-output 'ELAN9008:00 04F3:2C1A' eDP-1 &
+xinput map-to-output 'ELAN9009:00 04F3:2C1B' DP-3 &
 
-## Get colors from .Xresources -------------------------------#
-# xrdb ~/.Xresources
-# getcolors() {
-# 	FOREGROUND=$(xrdb -query | grep 'foreground:'| head -n 1 | awk '{print $NF}')
-# 	BACKGROUND=$(xrdb -query | grep 'background:'| head -n 1 | awk '{print $NF}')
-# 	BLACK=$(xrdb -query | grep 'color0:'| head -n 1 | awk '{print $NF}')
-# 	RED=$(xrdb -query | grep 'color1:'| head -n 1 | awk '{print $NF}')
-# 	GREEN=$(xrdb -query | grep 'color2:'| head -n 1 | awk '{print $NF}')
-# 	YELLOW=$(xrdb -query | grep 'color3:'| head -n 1 | awk '{print $NF}')
-# 	BLUE=$(xrdb -query | grep 'color4:'| head -n 1 | awk '{print $NF}')
-# 	MAGENTA=$(xrdb -query | grep 'color5:'| head -n 1 | awk '{print $NF}')
-# 	CYAN=$(xrdb -query | grep 'color6:'| head -n 1 | awk '{print $NF}')
-# 	WHITE=$(xrdb -query | grep 'color7:'| head -n 1 | awk '{print $NF}')
-# }
-# bspcolors
-# bspdunst
-# getcolors
+# Cursor
+xsetroot -cursor_name left_ptr &
 
+# Low battery notifier
+~/.config/bspwm/scripts/low_bat_notifier.sh
 
-bspc monitor eDP1 -d 1 3 5 7 9
-bspc monitor DP3 -d 2 4 6 8 0 
+# Config -----------------------------------------------------
 
-bspc config border_width         3
-bspc config window_gap          15
+bspc monitor eDP-1 -d 1 3 5 7 9
+bspc monitor DP-3 -d 2 4 6 8 0 
+
+bspc config border_width         2
+bspc config window_gap          10
+bspc config top_padding         10
 
 bspc config split_ratio          0.52
 bspc config gapless_monocle      true
@@ -73,15 +58,14 @@ bspc config gapless_monocle      false
 bspc config pointer_follows_focus true
 bspc config focus_follows_pointer false
 
-# Border
-bspc config focused_border_color        "$BLUE"
-bspc config normal_border_color         "$BACKGROUND"
-bspc config active_border_color         "$BLUE"
-bspc config presel_feedback_color		"$GREEN"
+bspc config focused_border_color        "#a07dde"
+bspc config normal_border_color         "#101313"
+bspc config active_border_color         "#101313"
+bspc config presel_feedback_color		"#a07dde"
 
-# Cursor
-xsetroot -cursor_name left_ptr &
+# bsp-layout -------------------------------------------------
 
-# Low battery notifier
-~/.config/bspwm/scripts/low_bat_notifier.sh
-
+# Set bsp-layout for each workspace
+for val in {0..9}; do
+    bsp-layout set tiled $val
+done

@@ -1,22 +1,22 @@
 
 font:
   normal:
-    family: "Liga SFMono Nerd Font"
-    style: Regular
+    family: "JetBrains Mono"
+    style: Normal
 
   bold:
-    family: "Liga SFMono Nerd Font"
+    family: "JetBrains Mono"
     style: Bold
 
   italic:
-    family: "Liga SFMono Nerd Font"
+    family: "JetBrains Mono"
     style: Italic
 
   bold_italic:
-    family: "Liga SFMono Nerd Font"
+    family: "JetBrains Mono"
     style: Bold Italic
 
-  size: 12
+  size: 14
 
   # Offset
   # offset:

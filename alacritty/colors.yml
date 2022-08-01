@@ -1,27 +1,75 @@
-colors:
-  # Default colors
-  primary:
-    background: '#141414'
-    foreground: '#c6c6c6'
+# Robot
+# colors:
+#   primary:
+#     background: '#141414'
+#     foreground: '#c6c6c6'
+#   normal:
+#     black:   '#333333'
+#     red:     '#d84b4f'
+#     green:   '#9ed84b'
+#     yellow:  '#d8af4b'
+#     blue:    '#4b91d8'
+#     magenta: '#8b68e3'
+#     cyan:    '#4bd8a2'
+#     white:   '#c6c6c6'
+#   bright:
+#     black:   '#333333'
+#     red:     '#d84b4f'
+#     green:   '#9ed84b'
+#     yellow:  '#d8af4b'
+#     blue:    '#4b91d8'
+#     magenta: '#8b68e3'
+#     cyan:    '#4bd8a2'
+#     white:   '#c6c6c6'
 
-  # Normal colors
-  normal:
-    black:   '#333333'
-    red:     '#d84b4f'
-    green:   '#9ed84b'
-    yellow:  '#d8af4b'
-    blue:    '#4b91d8'
-    magenta: '#8b68e3'
-    cyan:    '#4bd8a2'
-    white:   '#c6c6c6'
-    
-  # Bright colors
-  bright:
-    black:   '#333333'
-    red:     '#d84b4f'
-    green:   '#9ed84b'
-    yellow:  '#d8af4b'
-    blue:    '#4b91d8'
-    magenta: '#8b68e3'
-    cyan:    '#4bd8a2'
-    white:   '#c6c6c6'
+# Oni
+#   colors: 
+#     primary:
+#         background: '#21252a'
+#         foreground: '#D3D1DF'
+#     normal:
+#         black:   '#0B0B0C'
+#         red:     '#fc194e'
+#         green:   '#2FDE73'
+#         yellow:  '#FFE14D'
+#         blue:    '#50B6FF'
+#         magenta: '#AB80FF'
+#         cyan:    '#4FE0E0'
+#         white:   '#D3D1DF'
+#     bright:
+#         black:   '#0B0B0C'
+#         red:     '#fc194e'
+#         green:   '#2FDE73'
+#         yellow:  '#FFE14D'
+#         blue:    '#50B6FF'
+#         magenta: '#AB80FF'
+#         cyan:    '#4FE0E0'
+#         white:   '#D3D1DF'
+
+# Quixotic
+colors: 
+    primary:
+        background: '#101313'
+        foreground: '#d7d7d7'
+    cursor:
+        text:   CellBackground
+        cursor: '#f076ab'
+    normal:
+        black:   '#232525'
+        red:     '#f85858'
+        green:   '#2ac68e'
+        yellow:  '#f076ab'
+        blue:    '#008ce3'
+        magenta: '#a07dde'
+        cyan:    '#3dddd8'
+        white:   '#d7d7d7' 
+    bright:
+        black:   '#3F59AA'
+        red:     '#f85858'
+        green:   '#2ac68e'
+        yellow:  '#f076ab'
+        blue:    '#008ce3'
+        magenta: '#a07dde'
+        cyan:    '#3dddd8'
+        white:   '#d7d7d7'
+

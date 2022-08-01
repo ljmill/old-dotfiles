@@ -37,12 +37,15 @@ findkeyname() {
 
 alias chrome=google-chrome-stable
 alias l='exa -la --icons --sort type'
-alias eo='eww -c $HOME/dotfiles/eww/isobar open --toggle bar'
 alias keyname=findkeyname
 alias geo='xdotool selectwindow getwindowgeometry'
 alias pywal=colorswitcher
 alias dots='cd ~/dotfiles'
-alias klog=klog
+
+alias tall='bsp-layout set tall'
+alias wide='bsp-layout set wide'
+alias grid='bsp-layout set grid'
+alias tiled='bsp-layout set tiled'
 
 export PATH=~/dotfiles/bin:~/.local/bin:~/Go/bin:$PATH
 

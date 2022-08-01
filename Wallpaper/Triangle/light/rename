@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for file in *.png; do
-    filez="$(echo $file | sed 's/-/ /g')"
-    echo $filez | awk '{ print $1 }'
-done
