@@ -1,0 +1,64 @@
+* {
+  all: unset;
+  font-family: "Liga SFMono Nerd Font";
+}
+
+@import "theme.scss";
+
+// Size/spacing/misc
+.main-box {
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: $theme;
+}
+
+// Widget backgrounds
+.color-box {
+  background: linear-gradient(90deg, $primary, $secondary);
+  border-radius: 6;
+  margin: 0px 5px 0px 5px;
+  padding: 1px 6px 1px 6px;
+
+}
+
+.workspace-box {
+  border-radius: 6;
+  padding: 1px;
+  background: linear-gradient(90deg, $primary, $secondary); 
+}
+
+.layout-box {
+  background-color: $theme;
+  padding: 5px;
+  border-radius: 6;
+}
+
+// Text stuff
+.txt {
+  color: $bg;
+}
+
+.glyph {
+  font-family: "Font Awesome 6 Pro Solid";
+  padding-right: 4px;
+}
+
+// Workspace related
+.selected {
+  background: $theme; 
+  border-radius: 6;
+}
+
+.focused {
+  color: $primary;
+  font-weight: 900;
+}
+
+.occupied {
+  color: $theme;
+  font-weight: 900;
+}
+
+.empty {
+  color: rgba($theme, 0.5);
+}

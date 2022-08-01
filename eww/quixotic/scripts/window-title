@@ -1,0 +1,15 @@
+#!/bin/sh
+
+get_title() {
+     WIN_TITLE="$(xdotool getactivewindow getwindowclassname)"
+    if [[ "$WIN_TITLE" == "" ]]; then
+        echo ""
+    else
+        echo "(box :halign \"center\" :class \"color-box\" (label :class \"txt\" :limit-width 50 :text \"$WIN_TITLE\"))"
+    fi
+}
+
+get_title
+bspc subscribe desktop node_focus | while read -r _ ; do
+   get_title
+done
