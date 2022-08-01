@@ -1,6 +1,6 @@
 (include "layouts.yuck")
 
-; Pink, blue, or green
+; red, green, or blue
 (defvar color "blue")
 
 (defvar eww "eww -c ~/dotfiles/eww/quixotic")
@@ -10,8 +10,6 @@
 (defpoll hour :interval "5s" "date '+%I'")
 (defpoll min :interval "5s" "date '+%M'")
 (defvar layout "tiled")
-(defvar color_reveal false)
-(defvar color_choice "images/color1.svg")
 (deflisten workspaces "scripts/workspace-primary")
 (deflisten window_title "scripts/window-title")
 
@@ -19,7 +17,7 @@
 	(box :class "main-box" :orientation "h" :space-evenly true :valign "center" :height 30
 		(box :orientation "h" :space-evenly false :valign "center" :spacing 10
 			(overlay 
-			(image :image-height 20 :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/${color}/launcher2.svg")
+			(image :image-height 20 :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/${color}/launcher.svg")
 			(button :onclick "rofi -show drun &"))
 			(literal :content workspaces)
 

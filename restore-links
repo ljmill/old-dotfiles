@@ -13,5 +13,3 @@ cp -Rsf ~/dotfiles/bin /home/ljmill/.local
 
 # .zshrc
 cp -sf ~/dotfiles/.zshrc /home/ljmill
-
-
