@@ -1,4 +1,4 @@
-<p align="center"><img width="50%" src="https://github.com/ljmill/dotfiles/blob/main/assets/main.png"/></p>
+<p align="center"><img width="50%" src="https://github.com/ljmill/dotfiles/blob/main/assets/screenshot.png"/></p>
 
 ### Note:
 This rice was designed with my color scheme in mind: [Quixotic Color Scheme](https://www.github.com/QuixoticCS)--which is where you will find the configurations for many of the theme elements such as VSCode, GTK, icons, wallpaper, etc. 
