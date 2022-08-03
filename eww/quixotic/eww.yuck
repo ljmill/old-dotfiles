@@ -1,5 +1,6 @@
 (include "layouts.yuck")
-(defvar color "red")
+; color variable choices: red, blue, green
+(defvar color "blue")
 (defvar eww "eww -c ~/dotfiles/eww/quixotic")
 (defpoll month :interval "10m" "date +%b")
 (defpoll date :interval "5m" "date +%e")
