@@ -1,10 +1,6 @@
 (include "layouts.yuck")
-
-; red, green, or blue
-(defvar color "blue")
-
+(defvar color "red")
 (defvar eww "eww -c ~/dotfiles/eww/quixotic")
-
 (defpoll month :interval "10m" "date +%b")
 (defpoll date :interval "5m" "date +%e")
 (defpoll hour :interval "5s" "date '+%I'")
@@ -15,18 +11,19 @@
 
 (defwidget bar []
 	(box :class "main-box" :orientation "h" :space-evenly true :valign "center" :height 30
+
+		; LEFT: Rofi, Workspaces
 		(box :orientation "h" :space-evenly false :valign "center" :spacing 10
 			(overlay 
-			(image :image-height 20 :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/${color}/launcher.svg")
+			(image :image-height 20 :style "margin-left: 5px; margin-right: 5px;" :path "images/${color}/launcher.svg")
 			(button :onclick "rofi -show drun &"))
-			(literal :content workspaces)
+			(literal :content workspaces))
 
-		)
-
+		; CENTER: Window Title
 		(box :valign "center"
 			(literal :content window_title))
 
-		; Time, date, layout switcher
+		; RIGHT: Time, date, layout switcher
 		(box  :valign "center" :halign "end" :space-evenly false
 			(box :class "color-box" :space-evenly false :spacing 3
 				(label :class "txt glyph" :text "")
@@ -43,9 +40,8 @@
 			(box :class "color-box"
 				(label :class "txt" :text "${month}${date} | ${hour}:${min}"))
 			(overlay
-				(image :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/${color}/${layout}.svg")
-				(button :onclick "${eww} open --toggle layouts" ""))
-		)
+				(image :style "margin-left: 5px; margin-right: 5px;" :path "images/${color}/${layout}.svg")
+				(button :onclick "${eww} open --toggle layouts" "")))
 	)
 )
 

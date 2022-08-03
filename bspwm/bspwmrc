@@ -58,10 +58,10 @@ bspc config gapless_monocle      false
 bspc config pointer_follows_focus true
 bspc config focus_follows_pointer false
 
-bspc config focused_border_color        "#a07dde"
+bspc config focused_border_color        "#2FDE73"
 bspc config normal_border_color         "#101313"
 bspc config active_border_color         "#101313"
-bspc config presel_feedback_color		"#a07dde"
+bspc config presel_feedback_color		"#008ce3"
 
 # bsp-layout -------------------------------------------------
 
