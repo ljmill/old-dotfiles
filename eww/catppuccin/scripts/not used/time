@@ -1,0 +1,28 @@
+#!/bin/bash
+
+EWW="eww -c /home/ljmill/dotfiles/eww/isobar update"
+
+while true; do
+    minute="$(date +%M)"
+    hour="$(date +%l)"
+    month="$(date +%m)"
+    day="$(date +%e)"
+
+    ${EWW} month1=${month::1}
+    ${EWW} month2=${month:0-1}
+
+    ${EWW} day1=${day::1}
+    ${EWW} day2=${day:0-1}
+
+     if [[ $hour -lt 11 ]]; then
+        ${EWW} hour1=0
+    else
+        ${EWW} hour1=1
+    fi
+    ${EWW} hour2=${hour:0-1}
+
+    echo ${minute::1}
+    ${EWW} minute2=${minute:0-1}
+
+    sleep 5
+done

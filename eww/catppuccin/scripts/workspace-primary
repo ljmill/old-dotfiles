@@ -1,0 +1,28 @@
+#!/bin/sh
+
+
+workspaces() {
+    workspaces=( 1 3 5 7 9 )
+    STR="(box :halign \"start\" :valign \"center\" :class \"workspace-box\" :orientation \"h\" :space-evenly false :spacing 5 "
+    i=1
+    for val in "${workspaces[@]}"
+    do
+        if [[ $(bspc query -D -d focused --names | grep "$val") ]]; then 
+            STR+="(overlay (box :class \"selected\" :width 20 :height 20) (label :class \"focused\" :text \"$i\") (button :onclick \"bspc desktop -f $val\" \"\"))"
+        elif [[ $(bspc query -D -d .occupied --names | grep "$val") ]]; then 
+            STR+="(overlay (box :width 20 :height 20) (label :class \"occupied\" :text \"$i\") (button :onclick \"bspc desktop -f $val\" \"\"))"
+        else
+            STR+="(overlay (box :width 20 :height 20) (label :class \"empty\" :text \"$i\") (button :onclick \"bspc desktop -f $val\" \"\"))"
+        fi
+        i=$((i+1))       
+    done
+	
+    CUR_LAYOUT="$(bsp-layout get)"
+    eww -c ~/dotfiles/eww/catppuccin update layout=$CUR_LAYOUT
+    echo "$STR)"
+}
+
+workspaces
+bspc subscribe desktop node_transfer | while read -r event ; do
+workspaces
+done

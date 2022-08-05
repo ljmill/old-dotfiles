@@ -1,0 +1,35 @@
+(defwidget layouts []
+	; Eventbox to close the layouts window when hover is lost
+	(eventbox :onhoverlost "${eww} open --toggle layouts"
+		(box :class "layout-box" :orientation "v" :space-evenly true :spacing 10
+			; Row 1
+			(box :orientation "h" :space-evenly true :spacing 10
+				(overlay 
+					(image :path "images/layouts/tiled.svg")
+					(button :onclick "scripts/layout tiled" ""))
+				(overlay 
+					(image :path "images/layouts/tall.svg")
+					(button :onclick "scripts/layout tall" ""))
+				(overlay 
+					(image :path "images/layouts/wide.svg")
+					(button :onclick "scripts/layout wide" "")))
+			; Row 2
+			(box :orientation "h" :space-evenly true :spacing 10
+				(overlay 
+					(image :path "images/layouts/even.svg")
+					(button :onclick "scripts/layout even" ""))
+				(overlay 
+					(image :path "images/layouts/rtall.svg")
+					(button :onclick "scripts/layout rtall" ""))
+				(overlay 
+					(image :path "images/layouts/rwide.svg")
+					(button :onclick "scripts/layout rwide" "")))
+		))
+)
+
+(defwindow layouts
+	:geometry (geometry :x "1815" :y "35" :width "10px")
+	:monitor 0
+	:wm-ignore false
+	:stacking "fg"
+	(layouts))

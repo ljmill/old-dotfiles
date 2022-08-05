@@ -1,0 +1,56 @@
+(include "layouts.yuck")
+; color variable choices: red, blue, green
+(defvar color "red")
+(defvar eww "eww -c ~/dotfiles/eww/catppuccin")
+(defpoll month :interval "10m" "date +%b")
+(defpoll date :interval "5m" "date +%e")
+(defpoll hour :interval "5s" "date '+%I'")
+(defpoll min :interval "5s" "date '+%M'")
+(defvar layout "tiled")
+(deflisten workspaces "scripts/workspace-primary")
+(deflisten window_title "scripts/window-title")
+
+(defwidget bar []
+	(box :class "main-box" :orientation "h" :space-evenly true :valign "center" :height 30
+
+		; LEFT: Rofi, Workspaces
+		(box :orientation "h" :space-evenly false :valign "center" :spacing 10
+			(overlay 
+				(image :image-height 20 :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/launcher.svg")
+				(button :onclick "rofi -show drun &"))
+			(literal :content workspaces))
+
+		; CENTER: Window Title
+		(box :valign "center"
+			(literal :content window_title))
+
+		; RIGHT: Time, date, layout switcher
+		(box  :valign "center" :halign "end" :space-evenly false
+			(box :class "memory-box" :space-evenly false :spacing 3
+				(label :class "txt glyph" :text "")
+				(label :class "txt" :limit-width 4 :show-truncated false :text "${EWW_RAM.used_mem/1024/1024}")
+				(label :class "txt unit" :text "GB"))
+			(box :class "cpu-box" :space-evenly false :spacing 3
+				(label :class "txt glyph" :text "")
+				(label :class "txt" :limit-width 4 :show-truncated false :text "${EWW_CPU.avg}")
+				(label :class "txt unit" :text "%"))
+			(box :class "battery-box" :space-evenly false :spacing 3
+				(label :class "txt glyph" :text "")
+				(label :class "txt" :limit-width 4 :show-truncated false :text "${EWW_BATTERY.BAT0.capacity}")
+				(label :class "txt unit" :text "%"))
+			(box :class "time-box"
+				(label :class "txt" :text "${month}${date} | ${hour}:${min}"))
+			(overlay
+				(image :style "margin-left: 5px; margin-right: 5px;" :path "images/layouts/${layout}.svg")
+				(button :onclick "${eww} open --toggle layouts" "")))
+	)
+)
+
+
+(defwindow bar
+	:geometry (geometry :x "0" :y "0" :width "1920px")
+	:monitor 0
+	:reserve (struts :distance "25px" :side "top")
+	:wm-ignore false
+	:stacking "bg"
+	(bar))

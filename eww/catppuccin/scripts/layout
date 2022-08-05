@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bsp-layout set $1
+/home/ljmill/dotfiles/bin/eww -c ~/dotfiles/eww/catppuccin update layout=$1
+/home/ljmill/dotfiles/bin/eww -c ~/dotfiles/eww/catppuccin open --toggle layouts
