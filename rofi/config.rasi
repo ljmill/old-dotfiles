@@ -10,15 +10,9 @@ configuration {
 @theme "/dev/null"
 
 * {
-	bg:				#101313;
-	fg:				#d7d7d7;
-	red:     		#f85858;
-    green:   		#2ac68e;
-    yellow:  		#f076ab;
-    blue:    		#008ce3;
-    purple: 		#a07dde;
-    cyan:    		#3dddd8;
-    active:      	#232525;
+	bg:				#1e1e2e;
+	fg:				#cdd6f4;
+    active:      	#585b70;
 	rad:			5px;
 
 	background-color: @bg;
@@ -50,7 +44,7 @@ textbox {
     horizontal-align: 0.5;
     vertical-align: 0.5;
     border-radius: @rad;
-    background-image: linear-gradient(to right, #008ce3, #a07dde);
+    background-image: linear-gradient(to right, #45475a, #45475a);
     text-color: @fg;
     font: "Material Icons 17";
 }
