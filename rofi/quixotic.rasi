@@ -1,0 +1,91 @@
+configuration {
+	modi:					"drun";
+	display-drun: 			"Apps";
+	drun-display-format:    "{name}";
+	font:				    "JetBrainsMono Nerd Font 9";
+	show-icons:              true;
+	icon-theme: 			"Papirus";
+}
+
+@theme "/dev/null"
+
+* {
+	bg:				#101313;
+	fg:				#d7d7d7;
+	red:     		#f85858;
+    green:   		#2ac68e;
+    yellow:  		#f076ab;
+    blue:    		#008ce3;
+    purple: 		#a07dde;
+    cyan:    		#3dddd8;
+    active:      	#232525;
+	rad:			5px;
+
+	background-color: @bg;
+	text-color:	@fg;
+}
+
+window {
+	transparency: "real";
+	height: 1050px;
+    width: 15%;
+	location: west;
+	x-offset: 0px;
+	y-offset: 15px;
+	border: 0px;
+}
+
+inputbar {
+	children: [ textbox, entry ];
+	expand: false;
+	margin: 15px;
+	border-radius: @rad;
+	background-color: @active;
+}
+
+textbox {
+    str: "";
+    expand: false;
+    padding: 0 0.5% 0;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    border-radius: @rad;
+    background-image: linear-gradient(to right, #008ce3, #a07dde);
+    text-color: @fg;
+    font: "Material Icons 17";
+}
+
+entry{
+	expand: true;
+	padding: 1%;
+    placeholder: "Search";
+	border-radius: @rad;
+    background-color: @active;
+}
+
+listview {
+	columns: 2;
+	lines: 2;
+	cycle: false;
+    margin: 20px;
+}
+
+element {
+	orientation: vertical;
+	padding: 0.5em;
+}
+
+element-text, element-icon {
+	padding: 0.2em;
+	horizontal-align: 0.5;
+	background-color: inherit;
+}
+
+element-icon { size: 48px; }
+listview, element, element selected, element-text, element-icon { cursor: pointer; }
+
+element selected {
+	background-color: @active;
+	text-color: @fg;
+	border-radius: @rad;
+}
