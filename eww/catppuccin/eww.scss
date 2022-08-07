@@ -8,11 +8,14 @@
 .main-box {
   padding-right: 10px;
   padding-left: 10px;
-  background-color: $bg;
+  border-radius: 5px;
+  // margin: 5px 10px 5px 10px;
+  background-color: rgba($black, 0.75);
 }
 
 .color-box, 
 .title-box, 
+.focused-title-box,
 .memory-box,
 .cpu-box,
 .battery-box,
@@ -21,6 +24,10 @@
   margin: 0px 5px 0px 5px;
   padding: 1px 6px 1px 6px;
 
+}
+
+.focused-title-box {
+  background-color: $blue;
 }
 
 .title-box {

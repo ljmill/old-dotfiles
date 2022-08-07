@@ -9,6 +9,22 @@ get_title() {
     fi
 }
 
+get_title_all() {
+    FOCUSED_CLASS="$(bspc query -N -n .focused -d focused | xargs xdotool getwindowclassname)"
+    if [[ "$FOCUSED_CLASS" == "" ]]; then
+        echo ""
+    else
+        STRING_LIT="(box :orientation \"h\" :space-evenly false :halign \"center\" "
+        STRING_LIT+="(box :halign \"center\" :class \"focused-title-box\" (label :class \"txt\" :limit-width 50 :text \"$FOCUSED_CLASS\"))"
+        for i in $(bspc query -N -n .window.!focused -d focused); do
+            WINDOW_CLASS="$(xdotool getwindowclassname $i)"
+            STRING_LIT+="(box :halign \"center\" :class \"title-box\" (label :class \"txt\" :limit-width 50 :text \"$WINDOW_CLASS\"))"
+        done
+        STRING_LIT+=")"
+        echo $STRING_LIT
+    fi
+}
+
 get_title
 bspc subscribe desktop node_focus | while read -r _ ; do
    get_title
